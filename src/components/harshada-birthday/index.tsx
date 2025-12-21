@@ -20,7 +20,8 @@ const PHOTO_MEMORIES = [
   {
     src: "/photo2.jpg",
     alt: "A quieter candid moment",
-    caption: "The soft, in–between moments with you have always been my favourites.",
+    caption:
+      "The soft, in–between moments with you have always been my favourites.",
   },
   {
     src: "/photo3.jpeg",
@@ -30,7 +31,8 @@ const PHOTO_MEMORIES = [
   {
     src: "/photo4.jpeg",
     alt: "You looking away from the camera",
-    caption: "Even when you aren&apos;t looking here, I still can&apos;t stop looking at you.",
+    caption:
+      "Even when you aren&apos;t looking here, I still can&apos;t stop looking at you.",
   },
 ] as const;
 
@@ -85,7 +87,11 @@ const HarshadaBirthdayPage: React.FC = () => {
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => (a.target as HTMLElement).offsetTop - (b.target as HTMLElement).offsetTop);
+          .sort(
+            (a, b) =>
+              (a.target as HTMLElement).offsetTop -
+              (b.target as HTMLElement).offsetTop
+          );
 
         if (visible[0]) {
           const id = visible[0].target.id as SectionId;
@@ -138,9 +144,13 @@ const HarshadaBirthdayPage: React.FC = () => {
         <aside className="md:sticky md:top-8 md:h-[calc(100vh-4rem)] md:w-64 md:flex-shrink-0">
           <div className="flex items-center justify-between md:block md:space-y-6">
             <div className="space-y-1">
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">For</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                For
+              </p>
               <h1 className="text-2xl font-semibold">Hey you,</h1>
-              <p className="text-xs text-muted-foreground">A small birthday note from Sunny</p>
+              <p className="text-xs text-muted-foreground">
+                A small birthday note from Sunny
+              </p>
             </div>
 
             {/* Theme + music controls (stacked on mobile, inline on desktop) */}
@@ -160,7 +170,9 @@ const HarshadaBirthdayPage: React.FC = () => {
                 className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-[11px] font-medium shadow-sm hover:bg-accent hover:text-accent-foreground"
               >
                 <span className="inline-block size-1.5 rounded-full bg-pink-400" />
-                <span>{isMusicPlaying ? "Pause our song" : "Play our song"}</span>
+                <span>
+                  {isMusicPlaying ? "Pause our song" : "Play our song"}
+                </span>
               </button>
             </div>
           </div>
@@ -181,7 +193,9 @@ const HarshadaBirthdayPage: React.FC = () => {
               >
                 <span>{section.label}</span>
                 {activeSection === section.id && (
-                  <span className="text-[10px] uppercase tracking-[0.2em]">Now</span>
+                  <span className="text-[10px] uppercase tracking-[0.2em]">
+                    Now
+                  </span>
                 )}
               </button>
             ))}
@@ -232,23 +246,34 @@ const IntroSection: React.FC = () => {
   return (
     <section id="hey-you" className="scroll-mt-24 space-y-6">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Hey you</p>
-        <h2 className="text-3xl font-semibold md:text-4xl">Happy Birthday, Harshada</h2>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+          Hey you
+        </p>
+        <h2 className="text-3xl font-semibold md:text-4xl">
+          Happy Birthday, Harshada
+        </h2>
       </header>
 
       <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        Somehow, after all these years, it doesn&apos;t feel like time has really passed between us.
-        Seeing you again brings back a familiar warmth, like the version of us from college quietly
-        found its way back into the room.
+        Somehow, after all these years, it doesn&apos;t feel like time has
+        really passed between us. Seeing you again brings back a familiar
+        warmth, like the version of us from college quietly found its way back
+        into the room.
       </p>
 
       {/* Hero visual using your photos */}
-      <div className="relative mt-6 flex h-64 items-center justify-center overflow-hidden rounded-3xl border bg-cover bg-center bg-[url('/photo1.jpg')] dark:bg-[url('/photo2.jpg')]">
+      <div className="relative mt-6 flex h-64 items-center justify-center overflow-hidden rounded-3xl border bg-cover bg-center bg-[url('/photo1.jpg')] dark:bg-[url('/photo4.jpeg')]">
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent" />
         <div className="relative z-10 px-4 text-center text-rose-50">
-          <p className="text-xs uppercase tracking-[0.3em] text-rose-200">A small reminder</p>
-          <p className="mt-3 text-lg font-medium md:text-xl">We lost years, not our connection.</p>
-          <p className="mt-1 text-xs text-rose-100/90">This is one of my favourite versions of us.</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-rose-200">
+            A small reminder
+          </p>
+          <p className="mt-3 text-lg font-medium md:text-xl">
+            We lost years, not our connection.
+          </p>
+          <p className="mt-1 text-xs text-rose-100/90">
+            This is one of my favourite versions of us.
+          </p>
         </div>
       </div>
     </section>
@@ -259,33 +284,44 @@ const NineYearsSection: React.FC = () => {
   return (
     <section id="nine-years" className="scroll-mt-24 space-y-6">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Timeline</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+          Timeline
+        </p>
         <h2 className="text-2xl font-semibold md:text-3xl">Nine Years of Us</h2>
       </header>
 
       <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        From college corridors to quiet distances, from a single meeting in 2020 to finding our way
-        back again in 2025 &mdash; these years have changed so much around us, but somehow the way it
-        feels to be around you hasn&apos;t really changed at all.
+        From college corridors to quiet distances, from a single meeting in 2020
+        to finding our way back again in 2025 &mdash; these years have changed
+        so much around us, but somehow the way it feels to be around you
+        hasn&apos;t really changed at all.
       </p>
 
       <div className="mt-6 space-y-4">
         <div className="relative flex items-center justify-between rounded-xl border bg-card px-4 py-4 text-xs md:px-6 md:py-5 md:text-sm">
           <div className="absolute inset-x-6 top-1/2 -z-10 h-px -translate-y-1/2 bg-border md:inset-x-10" />
-          <TimelineDot label="College" description="Where it all quietly started." />
-          <TimelineDot label="2017" description="Life pulled us in different directions." />
+          <TimelineDot
+            label="College"
+            description="Where it all quietly started."
+          />
+          <TimelineDot
+            label="2017"
+            description="Life pulled us in different directions."
+          />
           <TimelineDot label="2020" description="A brief crossing of paths." />
-          <TimelineDot label="2025" description="Somehow, we&apos;re here again." />
+          <TimelineDot label="2025" description="Somehow, we're here again." />
         </div>
 
         {/* Little note + your video */}
         <div className="flex flex-col gap-3 md:flex-row">
           <div className="flex-1 rounded-xl border bg-card p-4 text-xs text-muted-foreground md:text-sm">
             <p>
-              It&apos;s been almost nine years now. And somehow, every time we meet, the comfort and
-              connection between us still feels the same.
+              It&apos;s been almost nine years now. And somehow, every time we
+              meet, the comfort and connection between us still feels the same.
             </p>
-            <p className="mt-2 text-[11px] font-medium text-foreground md:text-xs">&mdash; Sunny</p>
+            <p className="mt-2 text-[11px] font-medium text-foreground md:text-xs">
+              &mdash; Sunny
+            </p>
           </div>
 
           <div className="flex flex-1 items-center justify-center overflow-hidden rounded-xl border bg-black/90">
@@ -326,28 +362,33 @@ const LittleMemoriesSection: React.FC = () => {
   return (
     <section id="little-memories" className="scroll-mt-24 space-y-6">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Little things</p>
-        <h2 className="text-2xl font-semibold md:text-3xl">The Small Memories</h2>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+          Little things
+        </p>
+        <h2 className="text-2xl font-semibold md:text-3xl">
+          The Small Memories
+        </h2>
       </header>
 
       <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        Not big dramatic momentsjust the tiny ones. The everyday college chaos, the inside jokes,
-        the way time used to disappear when we were just sitting together. Those are the pieces that
-        still feel alive when I think of you.
+        Not big dramatic momentsjust the tiny ones. The everyday college chaos,
+        the inside jokes, the way time used to disappear when we were just
+        sitting together. Those are the pieces that still feel alive when I
+        think of you.
       </p>
 
       <div className="mt-4 grid gap-4 md:grid-cols-3">
         <MemoryCard
           title="College corners"
-          body="The way you&apos;d light up the most ordinary spaces. Somehow the classroom, the canteen, the walk back homethey all feel softer when I think of them with you in them."
+          body="The way you'd light up the most ordinary spaces. Somehow the classroom, the canteen, the walk back homethey all feel softer when I think of them with you in them."
         />
         <MemoryCard
           title="Quiet comfort"
-          body="How it never felt like we had to perform for each other. Just sitting next to you, saying nothing, somehow felt like the loudest kind of &quot;I&apos;m home.&quot;"
+          body='How it never felt like we had to perform for each other. Just sitting next to you, saying nothing, somehow felt like the loudest kind of "I&apos;m home."'
         />
         <MemoryCard
           title="Everyday versions of you"
-          body="The small expressions, the way you talk when you&apos;re excited, the childlike innocence that still shows up in your eyes &mdash; it&apos;s always been my favourite version of you."
+          body="The small expressions, the way you talk when you're excited, the childlike innocence that still shows up in your eyes &mdash; it's always been my favourite version of you."
         />
       </div>
 
@@ -384,7 +425,9 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ title, body }) => {
     <article className="flex h-full flex-col justify-between rounded-xl border bg-card p-4 text-xs shadow-sm md:p-5 md:text-sm">
       <div className="space-y-2">
         <h3 className="text-sm font-semibold md:text-base">{title}</h3>
-        <p className="text-[11px] leading-relaxed text-muted-foreground md:text-xs">{body}</p>
+        <p className="text-[11px] leading-relaxed text-muted-foreground md:text-xs">
+          {body}
+        </p>
       </div>
     </article>
   );
@@ -394,33 +437,41 @@ const FindingOurWayBackSection: React.FC = () => {
   return (
     <section id="finding-our-way-back" className="scroll-mt-24 space-y-6">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">After time apart</p>
-        <h2 className="text-2xl font-semibold md:text-3xl">Finding Our Way Back</h2>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+          After time apart
+        </p>
+        <h2 className="text-2xl font-semibold md:text-3xl">
+          Finding Our Way Back
+        </h2>
       </header>
 
       <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        Life took us in different directions for a while. We met less, spoke less, and whole years
-        went by where we weren&apos;t really in each other&apos;s everyday worlds. And still, every time we
-        somehow ended up in the same place again, the feeling never really learned how to be a
+        Life took us in different directions for a while. We met less, spoke
+        less, and whole years went by where we weren&apos;t really in each
+        other&apos;s everyday worlds. And still, every time we somehow ended up
+        in the same place again, the feeling never really learned how to be a
         stranger.
       </p>
 
       <div className="mt-4 space-y-3 text-xs md:text-sm">
         <QuoteCard>
-          After meeting you again, it doesn&apos;t feel like time has passed at all. There&apos;s something
-          about you that quietly pulls all those old feelings and memories back to the surface.
+          After meeting you again, it doesn&apos;t feel like time has passed at
+          all. There&apos;s something about you that quietly pulls all those old
+          feelings and memories back to the surface.
         </QuoteCard>
         <QuoteCard>
-          Seeing you every day again, just hanging out like we used to, somehow feels simple and
-          steady in a world that&apos;s become anything but simple.
+          Seeing you every day again, just hanging out like we used to, somehow
+          feels simple and steady in a world that&apos;s become anything but
+          simple.
         </QuoteCard>
         <QuoteCard>
-          It&apos;s been almost nine years now. And still, every time we meet, the comfort and connection
-          between us feels exactly the same.
+          It&apos;s been almost nine years now. And still, every time we meet,
+          the comfort and connection between us feels exactly the same.
         </QuoteCard>
         <QuoteCard>
-          Whenever I see you, there&apos;s a childlike innocence in you that I can&apos;t ignore. It&apos;s the
-          part of you that makes the world feel softer, and I think I&apos;ve always loved that.
+          Whenever I see you, there&apos;s a childlike innocence in you that I
+          can&apos;t ignore. It&apos;s the part of you that makes the world feel
+          softer, and I think I&apos;ve always loved that.
         </QuoteCard>
       </div>
     </section>
@@ -442,26 +493,35 @@ const LookingForwardSection: React.FC = () => {
   return (
     <section id="looking-forward" className="scroll-mt-24 space-y-6 pb-10">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">From here</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+          From here
+        </p>
         <h2 className="text-2xl font-semibold md:text-3xl">Looking Forward</h2>
       </header>
 
       <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        We can&apos;t rewrite the years that passed. But we can choose what happens with the ones in
-        front of us. Whether it&apos;s slow coffees, shared silences, or the tiniest everyday things that
-        somehow feel different when you&apos;re there &mdash; I&apos;m grateful that life brought you back into
-        my story.
+        We can&apos;t rewrite the years that passed. But we can choose what
+        happens with the ones in front of us. Whether it&apos;s slow coffees,
+        shared silences, or the tiniest everyday things that somehow feel
+        different when you&apos;re there &mdash; I&apos;m grateful that life
+        brought you back into my story.
       </p>
 
       <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        Wherever this next chapter goes, I just wanted you to have this small corner of the internet
-        that will always say the same simple thing:
+        Wherever this next chapter goes, I just wanted you to have this small
+        corner of the internet that will always say the same simple thing:
       </p>
 
       <div className="mt-4 rounded-2xl border bg-card px-5 py-4 shadow-sm md:py-5">
-        <p className="text-sm font-medium md:text-base">I&apos;m really glad we found our way back.</p>
-        <p className="mt-2 text-xs text-muted-foreground md:text-sm">Happy Birthday, Harshada.</p>
-        <p className="mt-4 text-xs font-medium text-muted-foreground md:text-sm">&mdash; Sunny</p>
+        <p className="text-sm font-medium md:text-base">
+          I&apos;m really glad we found our way back.
+        </p>
+        <p className="mt-2 text-xs text-muted-foreground md:text-sm">
+          Happy Birthday, Harshada.
+        </p>
+        <p className="mt-4 text-xs font-medium text-muted-foreground md:text-sm">
+          &mdash; Sunny
+        </p>
       </div>
     </section>
   );
