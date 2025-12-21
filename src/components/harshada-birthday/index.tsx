@@ -11,9 +11,32 @@ const SECTIONS = [
 
 type SectionId = (typeof SECTIONS)[number]["id"];
 
+const PHOTO_MEMORIES = [
+  {
+    src: "/photo1.jpg",
+    alt: "You smiling in a way that still feels like college",
+    caption: "Somehow you still look like the person my younger self fell for.",
+  },
+  {
+    src: "/photo2.jpg",
+    alt: "A quieter candid moment",
+    caption: "The soft, in–between moments with you have always been my favourites.",
+  },
+  {
+    src: "/photo3.jpeg",
+    alt: "You laughing",
+    caption: "This is the version of you my heart keeps replaying.",
+  },
+  {
+    src: "/photo4.jpeg",
+    alt: "You looking away from the camera",
+    caption: "Even when you aren&apos;t looking here, I still can&apos;t stop looking at you.",
+  },
+] as const;
+
 const HarshadaBirthdayPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("hey-you");
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"romantic" | "dark">("romantic");
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -23,20 +46,26 @@ const HarshadaBirthdayPage: React.FC = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const stored = window.localStorage.getItem("hb-theme");
-    if (stored === "dark" || stored === "light") {
+    if (stored === "dark" || stored === "romantic") {
       setTheme(stored);
+    } else if (stored === "light") {
+      // Backwards compatibility with the old light/dark toggle
+      setTheme("romantic");
     }
   }, []);
 
   // Handle theme class on root container
   const rootClassName = cn(
-    "min-h-screen w-full bg-background text-foreground transition-colors duration-300",
-    theme === "dark" && "dark"
+    "min-h-screen w-full transition-colors duration-500",
+    theme === "romantic" &&
+      "bg-gradient-to-b from-rose-50 via-pink-50 to-amber-50 text-rose-950",
+    theme === "dark" &&
+      "dark bg-gradient-to-b from-slate-950 via-slate-900 to-rose-950 text-rose-50"
   );
 
   const handleThemeToggle = () => {
     setTheme((prev) => {
-      const next = prev === "light" ? "dark" : "light";
+      const next = prev === "romantic" ? "dark" : "romantic";
       if (typeof window !== "undefined") {
         window.localStorage.setItem("hb-theme", next);
       }
@@ -119,10 +148,10 @@ const HarshadaBirthdayPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleThemeToggle}
-                className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-[11px] font-medium shadow-sm hover:bg-accent hover:text-accent-foreground"
+                className="inline-flex items-center gap-2 rounded-full border bg-card/90 px-3 py-1 text-[11px] font-medium shadow-sm backdrop-blur hover:bg-rose-100/90 hover:text-rose-700 dark:bg-card/80 dark:hover:bg-rose-900/60"
               >
-                <span className="inline-block size-1.5 rounded-full bg-primary" />
-                <span>{theme === "light" ? "Light" : "Dark"} mood</span>
+                <span className="inline-block size-1.5 rounded-full bg-rose-400" />
+                <span>{theme === "romantic" ? "Romantic" : "Dark"} mode</span>
               </button>
 
               <button
@@ -213,13 +242,13 @@ const IntroSection: React.FC = () => {
         found its way back into the room.
       </p>
 
-      {/* Hero visual placeholder – replace with a real photo later */}
-      <div className="relative mt-6 flex h-52 items-center justify-center overflow-hidden rounded-2xl border bg-gradient-to-br from-rose-100 via-amber-50 to-sky-50 dark:from-zinc-900 dark:via-zinc-900 dark:to-slate-900">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.25),_transparent_55%),_radial-gradient(circle_at_bottom,_rgba(56,189,248,0.2),_transparent_55%)] opacity-70" />
-        <div className="relative z-10 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">A small reminder</p>
+      {/* Hero visual using your photos */}
+      <div className="relative mt-6 flex h-64 items-center justify-center overflow-hidden rounded-3xl border bg-cover bg-center bg-[url('/photo1.jpg')] dark:bg-[url('/photo2.jpg')]">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent" />
+        <div className="relative z-10 px-4 text-center text-rose-50">
+          <p className="text-xs uppercase tracking-[0.3em] text-rose-200">A small reminder</p>
           <p className="mt-3 text-lg font-medium md:text-xl">We lost years, not our connection.</p>
-          <p className="mt-1 text-xs text-muted-foreground">This page is just for you.</p>
+          <p className="mt-1 text-xs text-rose-100/90">This is one of my favourite versions of us.</p>
         </div>
       </div>
     </section>
@@ -249,7 +278,7 @@ const NineYearsSection: React.FC = () => {
           <TimelineDot label="2025" description="Somehow, we&apos;re here again." />
         </div>
 
-        {/* Video placeholder */}
+        {/* Little note + your video */}
         <div className="flex flex-col gap-3 md:flex-row">
           <div className="flex-1 rounded-xl border bg-card p-4 text-xs text-muted-foreground md:text-sm">
             <p>
@@ -259,12 +288,16 @@ const NineYearsSection: React.FC = () => {
             <p className="mt-2 text-[11px] font-medium text-foreground md:text-xs">&mdash; Sunny</p>
           </div>
 
-          <div className="flex flex-1 items-center justify-center rounded-xl border bg-muted/60 p-4 text-xs text-muted-foreground md:text-sm">
-            <div className="flex h-32 w-full max-w-xs items-center justify-center rounded-lg border border-dashed bg-background/60">
-              <span className="text-[11px] md:text-xs">
-                Video placeholder &mdash; drop a small clip of a moment that feels like &quot;us&quot; here.
-              </span>
-            </div>
+          <div className="flex flex-1 items-center justify-center overflow-hidden rounded-xl border bg-black/90">
+            <video
+              className="h-40 w-full object-cover md:h-56"
+              src="/vid_1.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/cinametic.jpg"
+            />
           </div>
         </div>
       </div>
@@ -318,15 +351,23 @@ const LittleMemoriesSection: React.FC = () => {
         />
       </div>
 
-      {/* Photo placeholders row */}
-      <div className="mt-6 grid gap-3 md:grid-cols-3">
-        {[1, 2, 3].map((idx) => (
-          <div
-            key={idx}
-            className="flex h-28 items-center justify-center rounded-xl border border-dashed bg-muted/60 text-[11px] text-muted-foreground md:h-32"
+      {/* Photo row using your actual photos */}
+      <div className="mt-6 grid gap-3 md:grid-cols-4">
+        {PHOTO_MEMORIES.map((photo) => (
+          <figure
+            key={photo.src}
+            className="relative overflow-hidden rounded-2xl border bg-card shadow-sm"
           >
-            Photo placeholder #{idx}
-          </div>
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              className="h-32 w-full object-cover md:h-40"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pb-2 pt-4 text-[10px] text-rose-50 md:text-xs">
+              {photo.caption}
+            </figcaption>
+          </figure>
         ))}
       </div>
     </section>
