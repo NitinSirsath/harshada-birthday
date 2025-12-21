@@ -20,8 +20,7 @@ const PHOTO_MEMORIES = [
   {
     src: "/photo2.jpg",
     alt: "A quieter candid moment",
-    caption:
-      "The soft, in–between moments with you have always been my favourites.",
+    caption: "The soft, in–between moments with you have always been my favourites.",
   },
   {
     src: "/photo3.jpeg",
@@ -31,8 +30,37 @@ const PHOTO_MEMORIES = [
   {
     src: "/photo4.jpeg",
     alt: "You looking away from the camera",
-    caption:
-      "Even when you aren&apos;t looking here, I still can&apos;t stop looking at you.",
+    caption: "Even when you aren&apos;t looking here, I still can&apos;t stop looking at you.",
+  },
+  {
+    src: "/photo5.jpeg",
+    alt: "You lost in your own world",
+    caption: "Sometimes I just like watching you exist, quietly in your own thoughts.",
+  },
+  {
+    src: "/photo6.jpeg",
+    alt: "You in a cosy moment",
+    caption: "Little pockets of calm with you are still my favourite kind of silence.",
+  },
+  {
+    src: "/photo7.jpeg",
+    alt: "You being effortlessly yourself",
+    caption: "No filters, no performance &mdash; just you, which has always been enough.",
+  },
+  {
+    src: "/photo8.jpeg",
+    alt: "You caught mid-laugh",
+    caption: "If my heart had a soundtrack, it would probably sound like this moment.",
+  },
+  {
+    src: "/photo9.jpeg",
+    alt: "A softer side of you",
+    caption: "There&apos;s a gentleness in you that makes the whole world feel softer.",
+  },
+  {
+    src: "/photo10.jpeg",
+    alt: "You, exactly as you are now",
+    caption: "If the future looks like more days with you in it, I&apos;m in.",
   },
 ] as const;
 
@@ -43,6 +71,7 @@ const HarshadaBirthdayPage: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const sectionIds = useMemo(() => SECTIONS.map((s) => s.id), []);
+  const [cursorPosition, setCursorPosition] = useState({ x: 50, y: 35 });
 
   // Initialise theme from localStorage (optional, simple)
   useEffect(() => {
@@ -58,7 +87,7 @@ const HarshadaBirthdayPage: React.FC = () => {
 
   // Handle theme class on root container
   const rootClassName = cn(
-    "min-h-screen w-full transition-colors duration-500",
+    "relative min-h-screen w-full overflow-hidden transition-colors duration-500",
     theme === "romantic" &&
       "bg-gradient-to-b from-rose-50 via-pink-50 to-amber-50 text-rose-950",
     theme === "dark" &&
@@ -73,6 +102,13 @@ const HarshadaBirthdayPage: React.FC = () => {
       }
       return next;
     });
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    setCursorPosition({ x, y });
   };
 
   const handleScrollTo = (id: SectionId) => {
@@ -138,8 +174,70 @@ const HarshadaBirthdayPage: React.FC = () => {
   };
 
   return (
-    <div className={rootClassName}>
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:gap-10 md:px-8">
+    <div className={rootClassName} onMouseMove={handleMouseMove}>
+      {/* Interactive background glow following the cursor */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0 transition-all duration-500"
+          style={{
+            background:
+              theme === "romantic"
+                ? `radial-gradient(circle at ${cursorPosition.x}% ${cursorPosition.y}%, rgba(244, 114, 182, 0.20), transparent 60%)`
+                : `radial-gradient(circle at ${cursorPosition.x}% ${cursorPosition.y}%, rgba(248, 113, 113, 0.18), transparent 60%)`,
+          }}
+        />
+
+        {/* Faint galaxy ring in the middle of the screen */}
+        <div
+          className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-40 blur-3xl"
+          style={{
+            background:
+              theme === "romantic"
+                ? "conic-gradient(from 140deg, rgba(244,114,182,0.2), rgba(56,189,248,0.15), rgba(251,191,36,0.2), rgba(244,114,182,0.2))"
+                : "conic-gradient(from 160deg, rgba(59,130,246,0.35), rgba(236,72,153,0.3), rgba(14,165,233,0.25), rgba(59,130,246,0.35))",
+          }}
+        />
+
+        {/* Sparkling stars scattered across the screen */}
+        {Array.from({ length: 36 }).map((_, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <span
+            key={index}
+            className={cn(
+              "absolute h-1 w-1 rounded-full bg-rose-300/80 shadow-[0_0_8px_rgba(244,114,182,0.8)] dark:bg-rose-100/80 dark:shadow-[0_0_10px_rgba(248,250,252,0.9)] animate-pulse-slow",
+              index % 3 === 0 && "scale-125",
+              index % 5 === 0 && "animate-fade-in-out",
+              index % 7 === 0 && "h-1.5 w-1.5"
+            )}
+            style={{
+              left: `${(index * 11) % 100}%`,
+              top: `${(index * 29) % 100}%`,
+              animationDelay: `${index * 0.3}s`,
+            }}
+          />
+        ))}
+
+        {/* Occasional shooting stars */}
+        {Array.from({ length: 3 }).map((_, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <span
+            key={`meteor-${index}`}
+            className="absolute h-[2px] w-24 -rotate-45 bg-gradient-to-r from-transparent via-rose-100 to-transparent opacity-80 animate-meteor-effect"
+            style={{
+              top: `${10 + index * 18}%`,
+              left: `${60 + index * 8}%`,
+              animationDelay: `${index * 2.5}s`,
+            }}
+          />
+        ))}
+
+        {/* Slow floating blobs for subtle motion */}
+        <div className="pointer-events-none absolute -bottom-40 -left-10 h-56 w-56 rounded-full bg-rose-200/40 blur-3xl animate-float" />
+        <div className="pointer-events-none absolute -top-32 right-0 h-56 w-56 rounded-full bg-pink-300/30 blur-3xl animate-bounce-slow" />
+        <div className="pointer-events-none absolute bottom-10 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-amber-200/30 blur-3xl animate-float-up" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:gap-10 md:px-8">
         {/* Sidebar / navigation */}
         <aside className="md:sticky md:top-8 md:h-[calc(100vh-4rem)] md:w-64 md:flex-shrink-0">
           <div className="flex items-center justify-between md:block md:space-y-6">
@@ -244,7 +342,7 @@ const HarshadaBirthdayPage: React.FC = () => {
 
 const IntroSection: React.FC = () => {
   return (
-    <section id="hey-you" className="scroll-mt-24 space-y-6">
+    <section id="hey-you" className="scroll-mt-24 space-y-6 animate-fade-in-up">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           Hey you
@@ -282,7 +380,7 @@ const IntroSection: React.FC = () => {
 
 const NineYearsSection: React.FC = () => {
   return (
-    <section id="nine-years" className="scroll-mt-24 space-y-6">
+    <section id="nine-years" className="scroll-mt-24 space-y-6 animate-fade-in-up">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           Timeline
@@ -360,7 +458,7 @@ const TimelineDot: React.FC<TimelineDotProps> = ({ label, description }) => {
 
 const LittleMemoriesSection: React.FC = () => {
   return (
-    <section id="little-memories" className="scroll-mt-24 space-y-6">
+    <section id="little-memories" className="scroll-mt-24 space-y-6 animate-fade-in-up">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           Little things
@@ -392,24 +490,49 @@ const LittleMemoriesSection: React.FC = () => {
         />
       </div>
 
-      {/* Photo row using your actual photos */}
-      <div className="mt-6 grid gap-3 md:grid-cols-4">
-        {PHOTO_MEMORIES.map((photo) => (
-          <figure
-            key={photo.src}
-            className="relative overflow-hidden rounded-2xl border bg-card shadow-sm"
-          >
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              loading="lazy"
-              className="h-32 w-full object-cover md:h-40"
+      {/* Photo galaxy strip */}
+      <div className="mt-6 relative overflow-hidden rounded-3xl border bg-gradient-to-br from-rose-100/80 via-purple-100/60 to-sky-100/70 p-4 shadow-sm dark:from-slate-900/80 dark:via-purple-950/60 dark:to-slate-900/80 md:p-6">
+        {/* subtle stars behind the gallery */}
+        <div className="pointer-events-none absolute inset-0 opacity-40">
+          {Array.from({ length: 18 }).map((_, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <span
+              key={index}
+              className="absolute h-[3px] w-[3px] rounded-full bg-white/80 shadow-[0_0_6px_rgba(255,255,255,0.9)] animate-fade-in-out"
+              style={{
+                left: `${(index * 17) % 100}%`,
+                top: `${(index * 23) % 100}%`,
+                animationDelay: `${index * 0.4}s`,
+              }}
             />
-            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pb-2 pt-4 text-[10px] text-rose-50 md:text-xs">
-              {photo.caption}
-            </figcaption>
-          </figure>
-        ))}
+          ))}
+        </div>
+
+        <div className="relative grid auto-rows-[120px] gap-4 md:auto-rows-[160px] md:grid-cols-3">
+          {PHOTO_MEMORIES.map((photo, index) => (
+            <figure
+              key={photo.src}
+              className={cn(
+                "group relative flex h-full w-full items-end overflow-hidden rounded-2xl border bg-card/90 shadow-md backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl",
+                index % 3 === 0 && "md:row-span-2",
+                index % 4 === 0 && "md:col-span-2",
+                index % 2 === 0 ? "-rotate-1" : "rotate-1"
+              )}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+              <figcaption className="relative z-10 flex w-full items-end justify-between px-3 pb-2 pt-6 text-[10px] text-rose-50 md:px-4 md:pb-3 md:text-xs">
+                <span className="max-w-[80%] leading-snug">{photo.caption}</span>
+                <span className="ml-2 text-[11px] opacity-80">★</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -435,7 +558,7 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ title, body }) => {
 
 const FindingOurWayBackSection: React.FC = () => {
   return (
-    <section id="finding-our-way-back" className="scroll-mt-24 space-y-6">
+    <section id="finding-our-way-back" className="scroll-mt-24 space-y-6 animate-fade-in-up">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           After time apart
@@ -491,7 +614,7 @@ const QuoteCard: React.FC<React.PropsWithChildren> = ({ children }) => {
 
 const LookingForwardSection: React.FC = () => {
   return (
-    <section id="looking-forward" className="scroll-mt-24 space-y-6 pb-10">
+    <section id="looking-forward" className="scroll-mt-24 space-y-6 pb-10 animate-fade-in-up">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           From here
