@@ -24,6 +24,45 @@ const HarshadaBirthdayPage: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    // 1. Try to play immediately (works in some specific browser settings)
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Set volume to 50% so it's not blasting
+    audio.volume = 0.5;
+
+    const attemptPlay = async () => {
+      try {
+        await audio.play();
+        setIsMusicPlaying(true);
+      } catch (error) {
+        // 2. If browser blocks it, wait for the first user interaction
+        console.log("Autoplay blocked. Waiting for interaction.");
+
+        const playOnInteraction = async () => {
+          try {
+            await audio.play();
+            setIsMusicPlaying(true);
+            // Remove listener so it doesn't trigger again
+            document.removeEventListener("click", playOnInteraction);
+            document.removeEventListener("keydown", playOnInteraction);
+            document.removeEventListener("scroll", playOnInteraction);
+          } catch (e) {
+            console.error("Playback failed", e);
+          }
+        };
+
+        // Listen for any interaction
+        document.addEventListener("click", playOnInteraction);
+        document.addEventListener("keydown", playOnInteraction);
+        document.addEventListener("scroll", playOnInteraction);
+      }
+    };
+
+    attemptPlay();
+  }, []);
+
   // Handle theme class on root container
   const rootClassName = cn(
     "relative min-h-screen w-full overflow-hidden transition-colors duration-500",
@@ -176,93 +215,157 @@ const HarshadaBirthdayPage: React.FC = () => {
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:gap-10 md:px-8">
         {/* Sidebar / navigation */}
-        <aside className="md:sticky md:top-8 md:h-[calc(100vh-4rem)] md:w-64 md:shrink-0">
-          <div className="flex items-center justify-between md:block md:space-y-6">
-            <div className="space-y-1">
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                For
+        {/* --- DESKTOP SIDEBAR (The "Index") --- */}
+        <aside className="hidden md:sticky md:top-12 md:flex md:h-[calc(100vh-6rem)] md:w-72 md:shrink-0 md:flex-col md:justify-between">
+          {/* Top: Header & Nav */}
+          <div className="space-y-12">
+            {/* Brand / Title */}
+            <div className="space-y-2 border-l-4 border-rose-500 pl-6">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-slate-400">
+                The Edition
               </p>
-              <h1 className="text-2xl font-semibold">Hey you,</h1>
-              <p className="text-xs text-muted-foreground">
-                A small birthday note from Sunny
-              </p>
+              <h1 className="text-4xl font-black tracking-tighter text-slate-900 dark:text-white">
+                DEC 25.
+              </h1>
+              <p className="font-serif italic text-slate-500">For Harshada.</p>
             </div>
 
-            {/* Theme + music controls (stacked on mobile, inline on desktop) */}
-            <div className="mt-4 flex items-center gap-2 text-xs md:mt-6 md:flex-col md:items-start md:gap-3">
-              <button
-                type="button"
-                onClick={handleThemeToggle}
-                className="inline-flex items-center gap-2 rounded-full border bg-card/90 px-3 py-1 text-[11px] font-medium shadow-sm backdrop-blur hover:bg-rose-100/90 hover:text-rose-700 dark:bg-card/80 dark:hover:bg-rose-900/60"
+            {/* Navigation (Table of Contents) */}
+            <nav className="flex flex-col space-y-2">
+              {SECTIONS.map((section, index) => {
+                const isActive = activeSection === section.id;
+                return (
+                  <button
+                    key={section.id}
+                    onClick={() => handleScrollTo(section.id)}
+                    className={cn(
+                      "group flex items-center gap-4 py-3 pl-4 transition-all duration-300 hover:pl-8",
+                      isActive ? "opacity-100" : "opacity-40 hover:opacity-80"
+                    )}
+                  >
+                    {/* Chapter Number */}
+                    <span
+                      className={cn(
+                        "font-mono text-xs font-bold",
+                        isActive ? "text-rose-500" : "text-slate-400"
+                      )}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    {/* Label */}
+                    <span
+                      className={cn(
+                        "text-sm font-bold uppercase tracking-wider",
+                        isActive
+                          ? "text-slate-900 dark:text-white"
+                          : "text-slate-600 dark:text-slate-400"
+                      )}
+                    >
+                      {section.label}
+                    </span>
+
+                    {/* Active Dot */}
+                    {isActive && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.8)]" />
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* Bottom: Control Deck (Music & Theme) */}
+          <div className="rounded-2xl border border-slate-200 bg-white/50 p-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/50">
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 dark:bg-white",
+                  isMusicPlaying && "animate-spin-slow"
+                )}
               >
-                <span className="inline-block size-1.5 rounded-full bg-rose-400" />
-                <span>{theme === "romantic" ? "Romantic" : "Dark"} mode</span>
+                <span className="text-xs">💿</span>
+              </div>
+              <div className="overflow-hidden">
+                <p className="truncate text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                  {isMusicPlaying ? "Now Playing" : "Paused"}
+                </p>
+                <p className="truncate text-[10px] text-slate-500">
+                  Our Song.mp3
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={handleToggleMusic}
+                className="flex items-center justify-center gap-2 rounded-lg bg-slate-200 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-700 hover:bg-rose-500 hover:text-white transition-colors dark:bg-slate-800 dark:text-slate-300"
+              >
+                {isMusicPlaying ? "Pause" : "Play"}
               </button>
 
               <button
-                type="button"
-                onClick={handleToggleMusic}
-                className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-[11px] font-medium shadow-sm hover:bg-accent hover:text-accent-foreground"
+                onClick={handleThemeToggle}
+                className="flex items-center justify-center gap-2 rounded-lg bg-slate-200 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-900 hover:text-white transition-colors dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-white dark:hover:text-slate-900"
               >
-                <span className="inline-block size-1.5 rounded-full bg-pink-400" />
-                <span>
-                  {isMusicPlaying ? "Pause our song" : "Play our song"}
-                </span>
+                {theme === "romantic" ? "Dark" : "Light"}
               </button>
             </div>
           </div>
+        </aside>
 
-          {/* Desktop section nav */}
-          <nav className="mt-8 hidden flex-col gap-2 text-sm md:flex">
-            {SECTIONS.map((section) => (
+        {/* --- MOBILE TOP BAR (Brand) --- */}
+        <div className="mb-6 flex items-center justify-between md:hidden">
+          <div>
+            <h1 className="text-2xl font-black text-slate-900 dark:text-white">
+              DEC 25.
+            </h1>
+            <p className="text-xs uppercase tracking-widest text-rose-500">
+              For Harshada
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={handleThemeToggle}
+              className="rounded-full bg-slate-100 p-2 dark:bg-slate-800"
+            >
+              {theme === "romantic" ? "🌙" : "☀️"}
+            </button>
+            <button
+              onClick={handleToggleMusic}
+              className={cn(
+                "rounded-full bg-slate-100 p-2 dark:bg-slate-800",
+                isMusicPlaying && "ring-2 ring-rose-500"
+              )}
+            >
+              🎵
+            </button>
+          </div>
+        </div>
+
+        {/* --- MOBILE BOTTOM DOCK (Navigation) --- */}
+        <nav className="fixed bottom-6 left-4 right-4 z-50 flex items-center gap-2 overflow-x-auto rounded-2xl border border-white/20 bg-slate-900/80 p-2 shadow-2xl backdrop-blur-xl md:hidden">
+          {SECTIONS.map((section) => {
+            const isActive = activeSection === section.id;
+            return (
               <button
                 key={section.id}
-                type="button"
                 onClick={() => handleScrollTo(section.id)}
                 className={cn(
-                  "flex items-center justify-between rounded-full px-3 py-2 text-left transition-colors",
-                  activeSection === section.id
-                    ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                )}
-              >
-                <span>{section.label}</span>
-                {activeSection === section.id && (
-                  <span className="text-[10px] uppercase tracking-[0.2em]">
-                    Now
-                  </span>
-                )}
-              </button>
-            ))}
-          </nav>
-
-          {/* Mobile section nav */}
-          <nav className="sticky bottom-4 z-10 mt-8 flex items-center gap-2 overflow-x-auto rounded-full border bg-card/95 px-2 py-2 text-xs shadow-lg backdrop-blur md:hidden">
-            {SECTIONS.map((section) => (
-              <button
-                key={section.id}
-                type="button"
-                onClick={() => handleScrollTo(section.id)}
-                className={cn(
-                  "whitespace-nowrap rounded-full px-3 py-1",
-                  activeSection === section.id
-                    ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  "whitespace-nowrap rounded-xl px-4 py-2 text-xs font-bold transition-all",
+                  isActive
+                    ? "bg-rose-500 text-white shadow-lg shadow-rose-500/30"
+                    : "text-slate-400 hover:bg-white/10 hover:text-white"
                 )}
               >
                 {section.label}
               </button>
-            ))}
-          </nav>
+            );
+          })}
+        </nav>
 
-          {/* Hidden audio element with placeholder source – replace with real track */}
-          <audio
-            ref={audioRef}
-            loop
-            className="hidden"
-            src="/media/our-song-placeholder.mp3" // TODO: replace with the actual track path
-          />
-        </aside>
+        {/* Hidden audio element */}
+        <audio ref={audioRef} loop className="hidden" src="/music.mp3" />
 
         {/* Main content */}
         <main className="flex-1 space-y-20 pb-20 pt-4 md:pt-0">
@@ -310,7 +413,7 @@ const IntroSection: React.FC = () => {
       <div className="group relative mt-8 flex aspect-video w-full items-end overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-2xl">
         {/* Using an img tag ensures better object-fit than bg-image */}
         <img
-          src="/photo1.jpg"
+          src="/photo4.jpeg"
           alt="Hero"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
         />
