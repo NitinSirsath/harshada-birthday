@@ -279,35 +279,49 @@ const HarshadaBirthdayPage: React.FC = () => {
 
 const IntroSection: React.FC = () => {
   return (
-    <section id="hey-you" className="scroll-mt-24 space-y-6 animate-fade-in-up">
-      <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          Hey you
-        </p>
-        <h2 className="text-3xl font-semibold md:text-4xl">
-          Happy Birthday, Harshada
-        </h2>
+    <section id="hey-you" className="scroll-mt-24 space-y-8 animate-fade-in-up">
+      <header className="space-y-4">
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-rose-400/50" />
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-rose-500/80">
+            December 25
+          </p>
+        </div>
+
+        {/* BIG TYPOGRAPHY CHANGE */}
+        <div className="space-y-2">
+          <h2 className="text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
+            Happy Birthday,
+            <span className="block text-transparent bg-clip-text bg-linear-to-r from-rose-400 via-purple-400 to-rose-400 animate-gradient-x">
+              Harshada.
+            </span>
+          </h2>
+        </div>
       </header>
 
-      <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+      <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
         Somehow, after all these years, it doesn&apos;t feel like time has
         really passed between us. Seeing you again brings back a familiar
         warmth, like the version of us from college quietly found its way back
         into the room.
       </p>
 
-      {/* Hero visual using your photos */}
-      <div className="relative mt-6 flex h-64 items-center justify-center overflow-hidden rounded-3xl border bg-cover bg-center bg-[url('/photo1.jpg')] dark:bg-[url('/photo4.jpeg')]">
-        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/40 to-transparent" />
-        <div className="relative z-10 px-4 text-center text-rose-50">
-          <p className="text-xs uppercase tracking-[0.3em] text-rose-200">
-            A small reminder
+      {/* Cinematic Hero Image - Taller and wider */}
+      <div className="group relative mt-8 flex aspect-video w-full items-end overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-2xl">
+        {/* Using an img tag ensures better object-fit than bg-image */}
+        <img
+          src="/photo4.jpeg"
+          alt="Hero"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
+
+        <div className="relative z-10 p-6 md:p-10">
+          <p className="font-serif text-xl italic text-white md:text-3xl">
+            "We lost years, not our connection."
           </p>
-          <p className="mt-3 text-lg font-medium md:text-xl">
-            We lost years, not our connection.
-          </p>
-          <p className="mt-1 text-xs text-rose-100/90">
-            This is one of my favourite versions of us.
+          <p className="mt-2 text-xs uppercase tracking-widest text-rose-200/80">
+            2016 — 2025
           </p>
         </div>
       </div>
@@ -400,26 +414,44 @@ const FindingOurWayBackSection: React.FC = () => {
   return (
     <section
       id="finding-our-way-back"
-      className="scroll-mt-24 space-y-6 animate-fade-in-up"
+      className="scroll-mt-24 space-y-8 animate-fade-in-up"
     >
-      <header className="space-y-2">
+      <header className="space-y-2 border-l-2 border-rose-500/30 pl-4">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          After time apart
+          The Return
         </p>
-        <h2 className="text-2xl font-semibold md:text-3xl">
+        <h2 className="text-3xl font-semibold md:text-5xl">
           Finding Our Way Back
         </h2>
       </header>
 
-      <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        Life took us in different directions for a while. We met less, spoke
-        less, and whole years went by where we weren&apos;t really in each
-        other&apos;s everyday worlds. And still, every time we somehow ended up
-        in the same place again, the feeling never really learned how to be a
-        stranger.
-      </p>
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="space-y-6">
+          <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+            Life took us in different directions for a while. We met less, spoke
+            less, and whole years went by where we weren&apos;t really in each
+            other&apos;s everyday worlds.
+          </p>
+          <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+            And still, every time we somehow ended up in the same place again,
+            the feeling never really learned how to be a stranger.
+          </p>
+        </div>
 
-      <div className="mt-4 space-y-3 text-xs md:text-sm">
+        {/* Visual Decoration */}
+        <div className="relative flex items-center justify-center rounded-2xl border border-rose-100/10 bg-gradient-to-br from-rose-500/5 to-purple-500/5 p-8">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] opacity-20"></div>
+          <div className="text-center">
+            <span className="text-4xl md:text-6xl">⚓️</span>
+            <p className="mt-4 font-serif text-xl italic text-foreground/80">
+              "Steady."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Grid for quotes instead of stack */}
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
         <QuoteCard>
           After meeting you again, it doesn&apos;t feel like time has passed at
           all. There&apos;s something about you that quietly pulls all those old
@@ -437,7 +469,7 @@ const FindingOurWayBackSection: React.FC = () => {
         <QuoteCard>
           Whenever I see you, there&apos;s a childlike innocence in you that I
           can&apos;t ignore. It&apos;s the part of you that makes the world feel
-          softer, and I think I&apos;ve always loved that.
+          softer.
         </QuoteCard>
       </div>
     </section>
@@ -459,38 +491,36 @@ const LookingForwardSection: React.FC = () => {
   return (
     <section
       id="looking-forward"
-      className="scroll-mt-24 space-y-6 pb-10 animate-fade-in-up"
+      className="scroll-mt-24 space-y-12 pb-24 pt-10 animate-fade-in-up"
     >
-      <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          From here
-        </p>
-        <h2 className="text-2xl font-semibold md:text-3xl">Looking Forward</h2>
-      </header>
+      <div className="relative overflow-hidden rounded-3xl border border-rose-200/20 bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 px-6 py-12 text-center shadow-2xl md:px-12 md:py-20">
+        {/* Background sparkles */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-10 left-10 h-32 w-32 rounded-full bg-rose-500/20 blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 h-40 w-40 rounded-full bg-purple-500/20 blur-3xl"></div>
+        </div>
 
-      <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        We can&apos;t rewrite the years that passed. But we can choose what
-        happens with the ones in front of us. Whether it&apos;s slow coffees,
-        shared silences, or the tiniest everyday things that somehow feel
-        different when you&apos;re there &mdash; I&apos;m grateful that life
-        brought you back into my story.
-      </p>
+        <div className="relative z-10 mx-auto max-w-2xl space-y-8">
+          <h2 className="font-serif text-3xl font-medium text-rose-100 md:text-5xl">
+            "I'm really glad we found our way back."
+          </h2>
 
-      <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        Wherever this next chapter goes, I just wanted you to have this small
-        corner of the internet that will always say the same simple thing:
-      </p>
+          <div className="mx-auto h-px w-24 bg-rose-500/50"></div>
 
-      <div className="mt-4 rounded-2xl border bg-card px-5 py-4 shadow-sm md:py-5">
-        <p className="text-sm font-medium md:text-base">
-          I&apos;m really glad we found our way back.
-        </p>
-        <p className="mt-2 text-xs text-muted-foreground md:text-sm">
-          Happy Birthday, Harshada.
-        </p>
-        <p className="mt-4 text-xs font-medium text-muted-foreground md:text-sm">
-          &mdash; Sunny
-        </p>
+          <p className="text-base text-rose-200/80 md:text-lg">
+            We can&apos;t rewrite the years that passed. But we can choose what
+            happens with the ones in front of us. Whether it&apos;s slow coffees
+            or shared silences, I&apos;m grateful life brought you back into my
+            story.
+          </p>
+
+          <div className="mt-8">
+            <p className="text-sm font-bold uppercase tracking-widest text-rose-500">
+              Happy Birthday, Harshada
+            </p>
+            <p className="mt-2 text-xs text-slate-400">— Sunny, 2025</p>
+          </div>
+        </div>
       </div>
     </section>
   );
