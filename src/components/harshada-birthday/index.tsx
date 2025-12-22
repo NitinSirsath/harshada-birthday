@@ -207,7 +207,6 @@ const HarshadaBirthdayPage: React.FC = () => {
 
         {/* Sparkling stars scattered across the screen */}
         {Array.from({ length: 36 }).map((_, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <span
             key={index}
             className={cn(
@@ -226,10 +225,9 @@ const HarshadaBirthdayPage: React.FC = () => {
 
         {/* Occasional shooting stars */}
         {Array.from({ length: 3 }).map((_, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <span
             key={`meteor-${index}`}
-            className="absolute h-[2px] w-24 -rotate-45 bg-gradient-to-r from-transparent via-rose-100 to-transparent opacity-80 animate-meteor-effect"
+            className="absolute h-0.5 w-24 -rotate-45 bg-linear-to-r from-transparent via-rose-100 to-transparent opacity-80 animate-meteor-effect"
             style={{
               top: `${10 + index * 18}%`,
               left: `${60 + index * 8}%`,
@@ -246,7 +244,7 @@ const HarshadaBirthdayPage: React.FC = () => {
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:gap-10 md:px-8">
         {/* Sidebar / navigation */}
-        <aside className="md:sticky md:top-8 md:h-[calc(100vh-4rem)] md:w-64 md:flex-shrink-0">
+        <aside className="md:sticky md:top-8 md:h-[calc(100vh-4rem)] md:w-64 md:shrink-0">
           <div className="flex items-center justify-between md:block md:space-y-6">
             <div className="space-y-1">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -368,7 +366,7 @@ const IntroSection: React.FC = () => {
 
       {/* Hero visual using your photos */}
       <div className="relative mt-6 flex h-64 items-center justify-center overflow-hidden rounded-3xl border bg-cover bg-center bg-[url('/photo1.jpg')] dark:bg-[url('/photo4.jpeg')]">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/40 to-transparent" />
         <div className="relative z-10 px-4 text-center text-rose-50">
           <p className="text-xs uppercase tracking-[0.3em] text-rose-200">
             A small reminder
@@ -459,7 +457,7 @@ const TimelineDot: React.FC<TimelineDotProps> = ({ label, description }) => {
     <div className="relative flex flex-1 flex-col items-center gap-1 text-center">
       <span className="inline-flex size-2 items-center justify-center rounded-full bg-primary" />
       <span className="text-[11px] font-medium md:text-xs">{label}</span>
-      <span className="max-w-[8rem] text-[10px] text-muted-foreground md:text-[11px]">
+      <span className="max-w-32 text-[10px] text-muted-foreground md:text-[11px]">
         {description}
       </span>
     </div>
@@ -504,11 +502,10 @@ const LittleMemoriesSection: React.FC = () => {
       </div>
 
       {/* Photo galaxy strip */}
-      <div className="mt-6 relative overflow-hidden rounded-3xl border bg-gradient-to-br from-rose-100/80 via-purple-100/60 to-sky-100/70 p-4 shadow-sm dark:from-slate-900/80 dark:via-purple-950/60 dark:to-slate-900/80 md:p-6">
+      <div className="mt-6 relative overflow-hidden rounded-3xl border bg-linear-to-br from-rose-100/80 via-purple-100/60 to-sky-100/70 p-4 shadow-sm dark:from-slate-900/80 dark:via-purple-950/60 dark:to-slate-900/80 md:p-6">
         {/* subtle stars behind the gallery */}
         <div className="pointer-events-none absolute inset-0 opacity-40">
           {Array.from({ length: 18 }).map((_, index) => (
-            // eslint-disable-next-line react/no-array-index-key
             <span
               key={index}
               className="absolute h-[3px] w-[3px] rounded-full bg-white/80 shadow-[0_0_6px_rgba(255,255,255,0.9)] animate-fade-in-out"
@@ -538,7 +535,7 @@ const LittleMemoriesSection: React.FC = () => {
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
               <figcaption className="relative z-10 flex w-full items-end justify-between px-3 pb-2 pt-6 text-[10px] text-rose-50 md:px-4 md:pb-3 md:text-xs">
                 <span className="max-w-[80%] leading-snug">
                   {photo.caption}
