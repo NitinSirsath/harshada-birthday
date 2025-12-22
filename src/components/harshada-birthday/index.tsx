@@ -5,7 +5,7 @@ import { SECTIONS, type SectionId } from "./data";
 
 const HarshadaBirthdayPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("hey-you");
-  const [theme, setTheme] = useState<"romantic" | "dark">("romantic");
+  const [theme, setTheme] = useState<"romantic" | "dark">("dark");
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
