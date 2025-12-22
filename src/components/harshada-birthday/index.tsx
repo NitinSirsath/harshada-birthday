@@ -20,7 +20,8 @@ const PHOTO_MEMORIES = [
   {
     src: "/photo2.jpg",
     alt: "A quieter candid moment",
-    caption: "The soft, in–between moments with you have always been my favourites.",
+    caption:
+      "The soft, in–between moments with you have always been my favourites.",
   },
   {
     src: "/photo3.jpeg",
@@ -30,32 +31,38 @@ const PHOTO_MEMORIES = [
   {
     src: "/photo4.jpeg",
     alt: "You looking away from the camera",
-    caption: "Even when you aren&apos;t looking here, I still can&apos;t stop looking at you.",
+    caption:
+      "Even when you aren&apos;t looking here, I still can&apos;t stop looking at you.",
   },
   {
     src: "/photo5.jpeg",
     alt: "You lost in your own world",
-    caption: "Sometimes I just like watching you exist, quietly in your own thoughts.",
+    caption:
+      "Sometimes I just like watching you exist, quietly in your own thoughts.",
   },
   {
     src: "/photo6.jpeg",
     alt: "You in a cosy moment",
-    caption: "Little pockets of calm with you are still my favourite kind of silence.",
+    caption:
+      "Little pockets of calm with you are still my favourite kind of silence.",
   },
   {
     src: "/photo7.jpeg",
     alt: "You being effortlessly yourself",
-    caption: "No filters, no performance &mdash; just you, which has always been enough.",
+    caption:
+      "No filters, no performance &mdash; just you, which has always been enough.",
   },
   {
     src: "/photo8.jpeg",
     alt: "You caught mid-laugh",
-    caption: "If my heart had a soundtrack, it would probably sound like this moment.",
+    caption:
+      "If my heart had a soundtrack, it would probably sound like this moment.",
   },
   {
     src: "/photo9.jpeg",
     alt: "A softer side of you",
-    caption: "There&apos;s a gentleness in you that makes the whole world feel softer.",
+    caption:
+      "There&apos;s a gentleness in you that makes the whole world feel softer.",
   },
   {
     src: "/photo10.jpeg",
@@ -380,7 +387,10 @@ const IntroSection: React.FC = () => {
 
 const NineYearsSection: React.FC = () => {
   return (
-    <section id="nine-years" className="scroll-mt-24 space-y-6 animate-fade-in-up">
+    <section
+      id="nine-years"
+      className="scroll-mt-24 space-y-6 animate-fade-in-up"
+    >
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           Timeline
@@ -458,7 +468,10 @@ const TimelineDot: React.FC<TimelineDotProps> = ({ label, description }) => {
 
 const LittleMemoriesSection: React.FC = () => {
   return (
-    <section id="little-memories" className="scroll-mt-24 space-y-6 animate-fade-in-up">
+    <section
+      id="little-memories"
+      className="scroll-mt-24 space-y-6 animate-fade-in-up"
+    >
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           Little things
@@ -527,7 +540,9 @@ const LittleMemoriesSection: React.FC = () => {
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
               <figcaption className="relative z-10 flex w-full items-end justify-between px-3 pb-2 pt-6 text-[10px] text-rose-50 md:px-4 md:pb-3 md:text-xs">
-                <span className="max-w-[80%] leading-snug">{photo.caption}</span>
+                <span className="max-w-[80%] leading-snug">
+                  {photo.caption}
+                </span>
                 <span className="ml-2 text-[11px] opacity-80">★</span>
               </figcaption>
             </figure>
@@ -558,7 +573,10 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ title, body }) => {
 
 const FindingOurWayBackSection: React.FC = () => {
   return (
-    <section id="finding-our-way-back" className="scroll-mt-24 space-y-6 animate-fade-in-up">
+    <section
+      id="finding-our-way-back"
+      className="scroll-mt-24 space-y-6 animate-fade-in-up"
+    >
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           After time apart
@@ -614,7 +632,10 @@ const QuoteCard: React.FC<React.PropsWithChildren> = ({ children }) => {
 
 const LookingForwardSection: React.FC = () => {
   return (
-    <section id="looking-forward" className="scroll-mt-24 space-y-6 pb-10 animate-fade-in-up">
+    <section
+      id="looking-forward"
+      className="scroll-mt-24 space-y-6 pb-10 animate-fade-in-up"
+    >
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
           From here
