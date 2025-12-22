@@ -29,25 +29,30 @@ const LittleMemoriesSection: React.FC = () => {
       className="scroll-mt-24 space-y-12 py-10 relative"
     >
       {/* --- HEADER --- */}
-      <header className="space-y-4 text-center md:text-left">
-        <div className="inline-flex items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-3 py-1">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75"></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-rose-500"></span>
-          </span>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-rose-200">
-            Little Things
-          </span>
+      <header className="flex flex-col gap-8 border-b border-rose-500/10 pb-10 md:flex-row md:items-end md:justify-between">
+        <div className="space-y-6">
+          <div className="inline-flex items-center gap-3 rounded-full border border-rose-500/20 bg-rose-500/5 px-4 py-1.5 backdrop-blur-md">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75"></span>
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-rose-500"></span>
+            </span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-rose-300">
+              Observations
+            </span>
+          </div>
+
+          <h2 className="text-5xl font-black tracking-tighter text-white md:text-7xl lg:text-8xl leading-[0.9]">
+            The Small <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-500">
+              Details.
+            </span>
+          </h2>
         </div>
 
-        <h2 className="text-3xl font-bold text-rose-50 md:text-5xl">
-          The Small Memories
-        </h2>
-
-        <p className="max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base">
-          Not big dramatic moments—just the tiny ones. The chaos, the inside
-          jokes, the way time disappears when we are just sitting together.
-          Those pieces still feel alive.
+        <p className="max-w-md text-base leading-relaxed text-slate-400 md:text-right md:text-lg">
+          It isn't the big dramatic moments that stick. It's the quiet chaos,
+          the inside jokes, and the comfortable silence of just sitting
+          together.
         </p>
       </header>
 

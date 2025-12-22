@@ -284,7 +284,7 @@ const IntroSection: React.FC = () => {
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-rose-400/50" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-rose-500/80">
-            December 25
+            December 25th
           </p>
         </div>
 
@@ -292,7 +292,7 @@ const IntroSection: React.FC = () => {
         <div className="space-y-2">
           <h2 className="text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Happy Birthday,
-            <span className="block text-transparent bg-clip-text bg-linear-to-r from-rose-400 via-purple-400 to-rose-400 animate-gradient-x">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-purple-400 to-rose-400 animate-gradient-x">
               Harshada.
             </span>
           </h2>
@@ -310,11 +310,11 @@ const IntroSection: React.FC = () => {
       <div className="group relative mt-8 flex aspect-video w-full items-end overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-2xl">
         {/* Using an img tag ensures better object-fit than bg-image */}
         <img
-          src="/photo4.jpeg"
+          src="/photo1.jpg"
           alt="Hero"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
         <div className="relative z-10 p-6 md:p-10">
           <p className="font-serif text-xl italic text-white md:text-3xl">
@@ -328,84 +328,145 @@ const IntroSection: React.FC = () => {
     </section>
   );
 };
-
 const NineYearsSection: React.FC = () => {
   return (
     <section
       id="nine-years"
-      className="scroll-mt-24 space-y-6 animate-fade-in-up"
+      className="scroll-mt-32 space-y-12 animate-fade-in-up"
     >
-      <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          Timeline
+      {/* --- HEADER --- */}
+      <div className="flex flex-col gap-4 border-b-2 border-slate-200/50 pb-8 dark:border-slate-800 md:flex-row md:items-end md:justify-between">
+        <div className="space-y-2">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-rose-500">
+            Timeline
+          </p>
+          <h2 className="text-5xl font-black tracking-tight text-slate-900 dark:text-white md:text-7xl">
+            Nine Years.
+          </h2>
+        </div>
+        <p className="max-w-md text-sm font-medium leading-relaxed text-slate-500 dark:text-slate-400 md:text-right">
+          From college corridors to quiet distances, and finding our way back in
+          2025.
         </p>
-        <h2 className="text-2xl font-semibold md:text-3xl">Nine Years of Us</h2>
-      </header>
+      </div>
 
-      <p className="max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-        From college corridors to quiet distances, from a single meeting in 2020
-        to finding our way back again in 2025 &mdash; these years have changed
-        so much around us, but somehow the way it feels to be around you
-        hasn&apos;t really changed at all.
-      </p>
+      {/* --- CHUNKY CARDS GRID --- */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <YearCard
+          year="2016"
+          title="The Start"
+          desc="Where it quietly started. College corridors and awkward hellos."
+        />
+        <YearCard
+          year="2017"
+          title="The Drift"
+          desc="Life pulled us in different directions. We grew apart, but not away."
+        />
+        <YearCard
+          year="2020"
+          title="The Cross"
+          desc="A brief crossing of paths. Just enough to remind us of the history."
+        />
+        <YearCard
+          year="2025"
+          title="The Return"
+          desc="Somehow, we are here again. And it feels steady."
+          variant="highlight"
+        />
+      </div>
 
-      <div className="mt-6 space-y-4">
-        <div className="relative flex items-center justify-between rounded-xl border bg-card px-4 py-4 text-xs md:px-6 md:py-5 md:text-sm">
-          <div className="absolute inset-x-6 top-1/2 -z-10 h-px -translate-y-1/2 bg-border md:inset-x-10" />
-          <TimelineDot
-            label="College"
-            description="Where it all quietly started."
+      {/* --- CINEMATIC VIDEO BLOCK --- */}
+      <div className="group relative overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl transition-all hover:shadow-rose-500/10">
+        <div className="relative aspect-[21/9] w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+          <video
+            className="h-full w-full object-cover"
+            src="/vid_1.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/cinametic.jpg"
           />
-          <TimelineDot
-            label="2017"
-            description="Life pulled us in different directions."
-          />
-          <TimelineDot label="2020" description="A brief crossing of paths." />
-          <TimelineDot label="2025" description="Somehow, we're here again." />
+          {/* Dark Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
         </div>
 
-        {/* Little note + your video */}
-        <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex-1 rounded-xl border bg-card p-4 text-xs text-muted-foreground md:text-sm">
-            <p>
-              It&apos;s been almost nine years now. And somehow, every time we
-              meet, the comfort and connection between us still feels the same.
-            </p>
-            <p className="mt-2 text-[11px] font-medium text-foreground md:text-xs">
-              &mdash; Sunny
-            </p>
+        {/* Video Caption Overlay */}
+        <div className="absolute bottom-0 left-0 p-8 md:p-12">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-500 animate-pulse" />
+            Live Memory
           </div>
-
-          <div className="flex flex-1 items-center justify-center overflow-hidden rounded-xl border bg-black/90">
-            <video
-              className="h-40 w-full object-cover md:h-56"
-              src="/vid_1.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/cinametic.jpg"
-            />
-          </div>
+          <p className="mt-4 max-w-lg font-serif text-xl italic text-white/90 md:text-2xl">
+            "It's rare to have history with someone and still feel this
+            present."
+          </p>
         </div>
       </div>
     </section>
   );
 };
 
-interface TimelineDotProps {
-  label: string;
-  description: string;
+// --- SUB-COMPONENT: BIG CHUNKY CARD ---
+
+interface YearCardProps {
+  year: string;
+  title: string;
+  desc: string;
+  variant?: "default" | "highlight";
 }
 
-const TimelineDot: React.FC<TimelineDotProps> = ({ label, description }) => {
+const YearCard: React.FC<YearCardProps> = ({
+  year,
+  title,
+  desc,
+  variant = "default",
+}) => {
+  const isHighlight = variant === "highlight";
+
   return (
-    <div className="relative flex flex-1 flex-col items-center gap-1 text-center">
-      <span className="inline-flex size-2 items-center justify-center rounded-full bg-primary" />
-      <span className="text-[11px] font-medium md:text-xs">{label}</span>
-      <span className="max-w-32 text-[10px] text-muted-foreground md:text-[11px]">
-        {description}
+    <div
+      className={cn(
+        "relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[2rem] p-8 transition-transform duration-500 hover:-translate-y-2",
+        isHighlight
+          ? "bg-rose-600 text-white shadow-xl shadow-rose-600/20"
+          : "bg-slate-100 dark:bg-slate-900/50 dark:border dark:border-slate-800 text-slate-900 dark:text-slate-100"
+      )}
+    >
+      {/* Giant Background Number (The "Chunky" Part) */}
+      <span
+        className={cn(
+          "absolute -right-6 -top-10 font-black leading-none tracking-tighter select-none transition-transform duration-700 group-hover:scale-110",
+          // Responsive font size: huge on all screens
+          "text-[9rem] md:text-[10rem]",
+          isHighlight
+            ? "text-rose-900/30"
+            : "text-slate-200 dark:text-slate-800"
+        )}
+      >
+        {year}
       </span>
+
+      {/* Content Content */}
+      <div className="relative z-10 space-y-3">
+        <div
+          className={cn(
+            "h-1 w-8 rounded-full",
+            isHighlight ? "bg-rose-300" : "bg-rose-500"
+          )}
+        />
+
+        <h3 className="text-2xl font-bold tracking-tight">{title}</h3>
+
+        <p
+          className={cn(
+            "text-sm font-medium leading-relaxed",
+            isHighlight ? "text-rose-100" : "text-slate-500 dark:text-slate-400"
+          )}
+        >
+          {desc}
+        </p>
+      </div>
     </div>
   );
 };
@@ -414,67 +475,76 @@ const FindingOurWayBackSection: React.FC = () => {
   return (
     <section
       id="finding-our-way-back"
-      className="scroll-mt-24 space-y-8 animate-fade-in-up"
+      className="scroll-mt-32 space-y-16 animate-fade-in-up"
     >
-      <header className="space-y-2 border-l-2 border-rose-500/30 pl-4">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          The Return
-        </p>
-        <h2 className="text-3xl font-semibold md:text-5xl">
-          Finding Our Way Back
-        </h2>
-      </header>
+      {/* --- BIG HEADER --- */}
+      <div className="space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="h-px w-12 bg-rose-500" />
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-rose-500">
+            The Return
+          </span>
+        </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-6">
-          <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+        <h2 className="text-6xl font-black tracking-tighter text-slate-900 dark:text-white md:text-8xl">
+          Finding <br />
+          <span className="text-rose-500">Rhythm.</span>
+        </h2>
+      </div>
+
+      {/* --- INTRO BLOCK (Split Layout) --- */}
+      <div className="grid gap-12 lg:grid-cols-3">
+        <div className="space-y-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300 lg:col-span-2">
+          <p>
             Life took us in different directions for a while. We met less, spoke
             less, and whole years went by where we weren&apos;t really in each
             other&apos;s everyday worlds.
           </p>
-          <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-            And still, every time we somehow ended up in the same place again,
-            the feeling never really learned how to be a stranger.
+          <p>
+            But that’s the test, isn’t it? The fact that after all that
+            distance, the moment we sat down again, the conversation just picked
+            up exactly where we left it. No warmup needed.
           </p>
         </div>
 
-        {/* Visual Decoration */}
-        <div className="relative flex items-center justify-center rounded-2xl border border-rose-100/10 bg-gradient-to-br from-rose-500/5 to-purple-500/5 p-8">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] opacity-20"></div>
+        {/* Visual "Steady" Badge */}
+        <div className="flex items-center justify-center rounded-[2rem] bg-rose-100 p-8 text-rose-900 dark:bg-rose-900/30 dark:text-rose-100">
           <div className="text-center">
-            <span className="text-4xl md:text-6xl">⚓️</span>
-            <p className="mt-4 font-serif text-xl italic text-foreground/80">
+            <span className="block text-6xl">⚓️</span>
+            <span className="mt-2 block font-serif text-2xl font-bold italic">
               "Steady."
-            </p>
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Grid for quotes instead of stack */}
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
+      {/* --- CHUNKY STATEMENT CARDS --- */}
+      <div className="grid gap-6 md:grid-cols-2">
         <QuoteCard>
-          After meeting you again, it doesn&apos;t feel like time has passed at
-          all. There&apos;s something about you that quietly pulls all those old
-          feelings and memories back to the surface.
+          "After meeting you again, it doesn't feel like time has passed. You
+          simply remind me of the history we share."
         </QuoteCard>
+
         <QuoteCard>
-          Seeing you every day again, just hanging out like we used to, somehow
-          feels simple and steady in a world that&apos;s become anything but
-          simple.
+          "Seeing you everyday again, somehow feels simple and grounded in a
+          world that's become anything but simple."
         </QuoteCard>
+
         <QuoteCard>
-          It&apos;s been almost nine years now. And still, every time we meet,
-          the comfort and connection between us feels exactly the same.
+          "It's been almost nine years. And still, the comfort between us feels
+          exactly the same. That is rare."
         </QuoteCard>
+
         <QuoteCard>
-          Whenever I see you, there&apos;s a childlike innocence in you that I
-          can&apos;t ignore. It&apos;s the part of you that makes the world feel
-          softer.
+          "You have a genuine nature that disarms people. It makes the world
+          feel a little less cynical."
         </QuoteCard>
       </div>
     </section>
   );
 };
+
+// --- SUB-COMPONENT: EDITORIAL STATEMENT CARD ---
 
 const QuoteCard: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
@@ -491,34 +561,73 @@ const LookingForwardSection: React.FC = () => {
   return (
     <section
       id="looking-forward"
-      className="scroll-mt-24 space-y-12 pb-24 pt-10 animate-fade-in-up"
+      className="scroll-mt-24 pb-16 pt-12 animate-fade-in-up"
     >
-      <div className="relative overflow-hidden rounded-3xl border border-rose-200/20 bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 px-6 py-12 text-center shadow-2xl md:px-12 md:py-20">
-        {/* Background sparkles */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-10 left-10 h-32 w-32 rounded-full bg-rose-500/20 blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 h-40 w-40 rounded-full bg-purple-500/20 blur-3xl"></div>
-        </div>
+      {/* --- CONSISTENT DARK EDITORIAL CARD --- */}
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 border border-slate-800 shadow-2xl">
+        {/* Background Texture (Consistent with page) */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        ></div>
 
-        <div className="relative z-10 mx-auto max-w-2xl space-y-8">
-          <h2 className="font-serif text-3xl font-medium text-rose-100 md:text-5xl">
-            "I'm really glad we found our way back."
-          </h2>
+        {/* Abstract Glow */}
+        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-rose-500/5 blur-[80px]" />
 
-          <div className="mx-auto h-px w-24 bg-rose-500/50"></div>
+        <div className="relative z-10 grid gap-10 p-8 md:grid-cols-12 md:p-12">
+          {/* LEFT: The "Hook" (Big Typography) */}
+          <div className="flex flex-col justify-between md:col-span-5 md:border-r md:border-slate-800 md:pr-10">
+            <div className="space-y-4">
+              <span className="inline-block h-1 w-12 bg-rose-500"></span>
+              <h2 className="text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">
+                From Here <br />
+                <span className="text-rose-500">Forward.</span>
+              </h2>
+            </div>
 
-          <p className="text-base text-rose-200/80 md:text-lg">
-            We can&apos;t rewrite the years that passed. But we can choose what
-            happens with the ones in front of us. Whether it&apos;s slow coffees
-            or shared silences, I&apos;m grateful life brought you back into my
-            story.
-          </p>
+            <div className="hidden space-y-2 md:block">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
+                Signing Off
+              </p>
+              <p className="font-serif text-2xl italic text-slate-200">
+                "Glad we found our way back."
+              </p>
+            </div>
+          </div>
 
-          <div className="mt-8">
-            <p className="text-sm font-bold uppercase tracking-widest text-rose-500">
-              Happy Birthday, Harshada
+          {/* RIGHT: The Content (Text Heavy but Clean) */}
+          <div className="space-y-6 md:col-span-7 md:pl-2">
+            <p className="text-base leading-relaxed text-slate-400">
+              We can’t rewrite the years that passed, and honestly, I don’t
+              think we need to. There is something valuable about the fact that
+              we lived separate lives, grew into different people, and still
+              found common ground again. It proves that this connection isn't
+              just nostalgia—it’s compatible with who we are now.
             </p>
-            <p className="mt-2 text-xs text-slate-400">— Sunny, 2025</p>
+
+            <p className="text-base leading-relaxed text-slate-400">
+              At this stage in our lives, friendship isn't about constant
+              messaging or dramatic declarations. It’s about consistency. It’s
+              about having people who know your history but are interested in
+              your future. I am grateful that life circled back around so you
+              could be part of that for me.
+            </p>
+
+            <div className="mt-8 flex items-center justify-between border-t border-slate-800 pt-8">
+              <div>
+                <p className="text-lg font-bold text-white">
+                  Happy Birthday, Harshada.
+                </p>
+                <p className="text-sm text-slate-500">— Sunny, 2025</p>
+              </div>
+
+              {/* Small Visual Detail */}
+              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-800 text-rose-500">
+                ★
+              </div>
+            </div>
           </div>
         </div>
       </div>
