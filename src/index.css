@@ -1,6 +1,64 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 6s ease infinite;
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  .animate-spin-ultra-slow {
+    animation: spin 30s linear infinite;
+  }
+  .animate-bounce-slow {
+    animation: bounce 3s infinite;
+  }
+  .animate-meteor {
+    animation: meteor 5s linear infinite;
+  }
+  .paused {
+    animation-play-state: paused !important;
+  }
+}
+
+@keyframes meteor {
+  0% { transform: rotate(215deg) translateX(0); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
+}
+
+/* 
+   We use a trick for the orbit:
+   1. The container rotates clockwise.
+   2. The inner element rotates counter-clockwise at same speed.
+   This keeps the image upright while it moves in a circle.
+*/
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(220px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(220px) rotate(-360deg); }
+}
+
+/* For mobile radius adjustment */
+@media (max-width: 768px) {
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
