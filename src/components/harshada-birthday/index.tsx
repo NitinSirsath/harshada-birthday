@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import LittleMemoriesSection from "./components/LittleMemoriesSection";
 import { SECTIONS, type SectionId } from "./data";
 
-const DipaliiBirthdayPage: React.FC = () => {
+const BirthdayPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("hey-you");
   const [theme, setTheme] = useState<"romantic" | "dark">("dark");
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
@@ -227,7 +227,7 @@ const DipaliiBirthdayPage: React.FC = () => {
               <h1 className="text-4xl font-black tracking-tighter text-slate-900 dark:text-white">
                 OCT 17.
               </h1>
-              <p className="font-serif italic text-slate-500">For Dipali. 🎂</p>
+              <p className="font-serif italic text-slate-500">Happy Birthday Love. 🎂</p>
             </div>
 
             {/* Navigation (Table of Contents) */}
@@ -321,7 +321,7 @@ const DipaliiBirthdayPage: React.FC = () => {
               OCT 17.
             </h1>
             <p className="text-xs uppercase tracking-widest text-rose-500">
-              For Dipali 🎂
+              Happy Birthday Love 🎂
             </p>
           </div>
           <div className="flex gap-2">
@@ -396,7 +396,7 @@ const IntroSection: React.FC = () => {
           <h2 className="text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Happy Birthday,
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-purple-400 to-rose-400 animate-gradient-x">
-              Dipali. 🎂
+              Love. 🎂
             </span>
           </h2>
         </div>
@@ -435,7 +435,7 @@ const IntroSection: React.FC = () => {
             <div className="flex items-center gap-4 pt-2 border-t border-slate-800">
               <span className="text-2xl">❤️</span>
               <div>
-                <p className="text-sm font-bold text-white tracking-wide">Sunny &amp; Dipali</p>
+                <p className="text-sm font-bold text-white tracking-wide">Forever &amp; Always</p>
                 <p className="text-xs text-rose-300/80">April 6, 2025 — Forever</p>
               </div>
             </div>
@@ -446,7 +446,7 @@ const IntroSection: React.FC = () => {
             <div className="relative w-full max-w-[320px] aspect-[3/4] overflow-hidden rounded-2xl border-2 border-rose-500/30 shadow-2xl bg-slate-950 group/photo">
               <img
                 src="/photo_hero.jpg"
-                alt="Dipali Birthday Queen"
+                alt="Birthday Queen"
                 className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover/photo:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
@@ -772,7 +772,7 @@ const LookingForwardSection: React.FC = () => {
             <div className="mt-8 flex items-center justify-between border-t border-slate-800 pt-8">
               <div>
                 <p className="text-lg font-bold text-white">
-                  Happy Birthday, Dipali. 😘🥰
+                  Happy Birthday, Love. 😘🥰
                 </p>
                 <p className="text-sm text-slate-500">— Sunny, 2026</p>
               </div>
@@ -789,4 +789,4 @@ const LookingForwardSection: React.FC = () => {
   );
 };
 
-export default DipaliiBirthdayPage;
+export default BirthdayPage;
