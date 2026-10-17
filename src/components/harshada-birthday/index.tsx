@@ -410,13 +410,12 @@ const IntroSection: React.FC = () => {
         so beautiful.
       </p>
 
-      {/* Cinematic Hero Image - Taller and wider */}
-      <div className="group relative mt-8 flex aspect-video w-full items-end overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-2xl">
-        {/* Using an img tag ensures better object-fit than bg-image */}
+      {/* Cinematic Hero Image */}
+      <div className="group relative mt-8 flex w-full items-end overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-2xl" style={{ minHeight: "380px", maxHeight: "540px" }}>
         <img
-          src="/photo7.jpeg"
+          src="/photo1.jpg"
           alt="Hero"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+          className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105 opacity-90"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
@@ -482,9 +481,9 @@ const OurStorySection: React.FC = () => {
 
       {/* --- CINEMATIC VIDEO BLOCK --- */}
       <div className="group relative overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl transition-all hover:shadow-rose-500/10">
-        <div className="relative aspect-[21/9] w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+        <div className="relative aspect-video w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100">
           <video
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-center"
             src="/vid_1.mp4"
             autoPlay
             muted

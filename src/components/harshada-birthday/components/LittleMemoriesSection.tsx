@@ -136,7 +136,7 @@ const LittleMemoriesSection: React.FC = () => {
                   src={photo.src}
                   alt={photo.alt}
                   className={cn(
-                    "h-full w-full object-cover transition-transform duration-700 ease-out",
+                    "h-full w-full object-cover object-top transition-transform duration-700 ease-out",
                     isHovered ? "scale-110" : "scale-100 group-hover:scale-105"
                   )}
                 />
