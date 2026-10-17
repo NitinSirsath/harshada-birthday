@@ -59,21 +59,21 @@ const LittleMemoriesSection: React.FC = () => {
       {/* --- TEXT CARDS --- */}
       <div className="grid gap-6 md:grid-cols-3">
         <MemoryCard
-          icon="🏫"
-          title="College Corners"
-          body="The way you'd light up the most ordinary spaces. The classroom, the canteen, the walk back home—they all feel softer when I think of them with you in them."
+          icon="📱"
+          title="The First Snap"
+          body="On April 6, 2025, you replied to my morning snap and little did I know that one small snap would become the beginning of something so beautiful. 🥹❤️"
           delay={0}
         />
         <MemoryCard
-          icon="☕"
-          title="Quiet Comfort"
-          body='How it never felt like we had to perform for each other. Just sitting next to you, saying nothing, somehow felt like the loudest kind of "I&apos;m home."'
+          icon="✈️"
+          title="September 16"
+          body="When your flight landed in Aurangabad, it felt like some kind of magic, as if the universe had already planned our story. Even today it feels unreal. ❤️"
           delay={1}
         />
         <MemoryCard
-          icon="✨"
-          title="Everyday You"
-          body="The small expressions, the way you talk when you're excited, the childlike innocence that still shows up in your eyes—it's always been my favourite version of you."
+          icon="❤️"
+          title="My Babuuu"
+          body="From two people who were practically strangers to being in a relationship, making memories, and becoming a part of each other's lives. ❤️🫂"
           delay={2}
         />
       </div>

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import LittleMemoriesSection from "./components/LittleMemoriesSection";
 import { SECTIONS, type SectionId } from "./data";
 
-const HarshadaBirthdayPage: React.FC = () => {
+const DipaliiBirthdayPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("hey-you");
   const [theme, setTheme] = useState<"romantic" | "dark">("dark");
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
@@ -225,9 +225,9 @@ const HarshadaBirthdayPage: React.FC = () => {
                 The Edition
               </p>
               <h1 className="text-4xl font-black tracking-tighter text-slate-900 dark:text-white">
-                DEC 25.
+                OCT 17.
               </h1>
-              <p className="font-serif italic text-slate-500">For Harshada.</p>
+              <p className="font-serif italic text-slate-500">For Dipali. 🎂</p>
             </div>
 
             {/* Navigation (Table of Contents) */}
@@ -318,10 +318,10 @@ const HarshadaBirthdayPage: React.FC = () => {
         <div className="mb-6 flex items-center justify-between md:hidden">
           <div>
             <h1 className="text-2xl font-black text-slate-900 dark:text-white">
-              DEC 25.
+              OCT 17.
             </h1>
             <p className="text-xs uppercase tracking-widest text-rose-500">
-              For Harshada
+              For Dipali 🎂
             </p>
           </div>
           <div className="flex gap-2">
@@ -370,9 +370,9 @@ const HarshadaBirthdayPage: React.FC = () => {
         {/* Main content */}
         <main className="flex-1 space-y-20 pb-20 pt-4 md:pt-0">
           <IntroSection />
-          <NineYearsSection />
+          <OurStorySection />
           <LittleMemoriesSection />
-          <FindingOurWayBackSection />
+          <FindingRhythmSection />
           <LookingForwardSection />
         </main>
       </div>
@@ -387,7 +387,7 @@ const IntroSection: React.FC = () => {
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-rose-400/50" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-rose-500/80">
-            December 25th
+            October 17th
           </p>
         </div>
 
@@ -396,24 +396,25 @@ const IntroSection: React.FC = () => {
           <h2 className="text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Happy Birthday,
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-purple-400 to-rose-400 animate-gradient-x">
-              Harshada.
+              Dipali. 🎂
             </span>
           </h2>
         </div>
       </header>
 
       <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-        Somehow, after all these years, it doesn&apos;t feel like time has
-        really passed between us. Seeing you again brings back a familiar
-        warmth, like the version of us from college quietly found its way back
-        into the room.
+        It all started so unexpectedly, babuuu. ❤️🥹 We started talking and
+        everything was normal, but then you found me through a Dating App — and
+        I remember telling you about hair mask remedies. 😂❤️ Little did I know
+        that one small snap on April 6 would become the beginning of something
+        so beautiful.
       </p>
 
       {/* Cinematic Hero Image - Taller and wider */}
       <div className="group relative mt-8 flex aspect-video w-full items-end overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-2xl">
         {/* Using an img tag ensures better object-fit than bg-image */}
         <img
-          src="/photo4.jpeg"
+          src="/photo7.jpeg"
           alt="Hero"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
         />
@@ -421,17 +422,18 @@ const IntroSection: React.FC = () => {
 
         <div className="relative z-10 p-6 md:p-10">
           <p className="font-serif text-xl italic text-white md:text-3xl">
-            "We lost years, not our connection."
+            &ldquo;What started with a random snap led me to you.&rdquo;
           </p>
           <p className="mt-2 text-xs uppercase tracking-widest text-rose-200/80">
-            2016 — 2025
+            April 6, 2025 — October 17, 2026
           </p>
         </div>
       </div>
     </section>
   );
 };
-const NineYearsSection: React.FC = () => {
+
+const OurStorySection: React.FC = () => {
   return (
     <section
       id="nine-years"
@@ -444,36 +446,36 @@ const NineYearsSection: React.FC = () => {
             Timeline
           </p>
           <h2 className="text-5xl font-black tracking-tight text-slate-900 dark:text-white md:text-7xl">
-            Nine Years.
+            Our Story.
           </h2>
         </div>
         <p className="max-w-md text-sm font-medium leading-relaxed text-slate-500 dark:text-slate-400 md:text-right">
-          From college corridors to quiet distances, and finding our way back in
-          2025.
+          From a random snap to everyday conversations, to you landing in
+          Aurangabad. ✈️❤️
         </p>
       </div>
 
       {/* --- CHUNKY CARDS GRID --- */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <YearCard
-          year="2016"
-          title="The Start"
-          desc="Where it quietly started. College corridors and awkward hellos."
+          year="Apr 6"
+          title="The Snap"
+          desc="You replied to my morning snap. Little did we know, this was the beginning."
         />
         <YearCard
-          year="2017"
-          title="The Drift"
-          desc="Life pulled us in different directions. We grew apart, but not away."
+          year="Daily"
+          title="Every Day"
+          desc="Talking every single day, from morning. You became part of my daily life."
         />
         <YearCard
-          year="2020"
-          title="The Cross"
-          desc="A brief crossing of paths. Just enough to remind us of the history."
+          year="Sep 16"
+          title="The Landing"
+          desc="Your flight landed in Aurangabad. The universe had already planned our story."
         />
         <YearCard
-          year="2025"
-          title="The Return"
-          desc="Somehow, we are here again. And it feels steady."
+          year="Now"
+          title="Together"
+          desc="From strangers to babuuu. I'm grateful for every moment that brought me to you."
           variant="highlight"
         />
       </div>
@@ -501,8 +503,8 @@ const NineYearsSection: React.FC = () => {
             Live Memory
           </div>
           <p className="mt-4 max-w-lg font-serif text-xl italic text-white/90 md:text-2xl">
-            "It's rare to have history with someone and still feel this
-            present."
+            &ldquo;Maybe it was destiny, or maybe some stories are written long
+            before we realise they&apos;ve begun.&rdquo;
           </p>
         </div>
       </div>
@@ -541,7 +543,7 @@ const YearCard: React.FC<YearCardProps> = ({
         className={cn(
           "absolute -right-6 -top-10 font-black leading-none tracking-tighter select-none transition-transform duration-700 group-hover:scale-110",
           // Responsive font size: huge on all screens
-          "text-[9rem] md:text-[10rem]",
+          "text-[6rem] md:text-[7rem]",
           isHighlight
             ? "text-rose-900/30"
             : "text-slate-200 dark:text-slate-800"
@@ -574,7 +576,7 @@ const YearCard: React.FC<YearCardProps> = ({
   );
 };
 
-const FindingOurWayBackSection: React.FC = () => {
+const FindingRhythmSection: React.FC = () => {
   return (
     <section
       id="finding-our-way-back"
@@ -585,13 +587,13 @@ const FindingOurWayBackSection: React.FC = () => {
         <div className="flex items-center gap-4">
           <div className="h-px w-12 bg-rose-500" />
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-rose-500">
-            The Return
+            The Connection
           </span>
         </div>
 
         <h2 className="text-6xl font-black tracking-tighter text-slate-900 dark:text-white md:text-8xl">
           Finding <br />
-          <span className="text-rose-500">Rhythm.</span>
+          <span className="text-rose-500">Magic.</span>
         </h2>
       </div>
 
@@ -599,23 +601,24 @@ const FindingOurWayBackSection: React.FC = () => {
       <div className="grid gap-12 lg:grid-cols-3">
         <div className="space-y-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300 lg:col-span-2">
           <p>
-            Life took us in different directions for a while. We met less, spoke
-            less, and whole years went by where we weren&apos;t really in each
-            other&apos;s everyday worlds.
+            Without even realising it, you started becoming someone so special
+            to me. Our conversations became a part of my daily life, and slowly,
+            we began talking every single day.
           </p>
           <p>
-            But that’s the test, isn’t it? The fact that after all that
-            distance, the moment we sat down again, the conversation just picked
-            up exactly where we left it. No warmup needed.
+            And then came September 16, when suddenly, your flight landed in
+            Aurangabad. ❤️✈️ Even today, when I think about everything, it
+            feels like some kind of magic — as if the universe had already
+            planned our story.
           </p>
         </div>
 
-        {/* Visual "Steady" Badge */}
+        {/* Visual "Magic" Badge */}
         <div className="flex items-center justify-center rounded-[2rem] bg-rose-100 p-8 text-rose-900 dark:bg-rose-900/30 dark:text-rose-100">
           <div className="text-center">
-            <span className="block text-6xl">⚓️</span>
+            <span className="block text-6xl">✨</span>
             <span className="mt-2 block font-serif text-2xl font-bold italic">
-              "Steady."
+              &ldquo;Magic.&rdquo;
             </span>
           </div>
         </div>
@@ -624,23 +627,26 @@ const FindingOurWayBackSection: React.FC = () => {
       {/* --- CHUNKY STATEMENT CARDS --- */}
       <div className="grid gap-6 md:grid-cols-2">
         <QuoteCard>
-          "After meeting you again, it doesn't feel like time has passed. You
-          simply remind me of the history we share."
+          &ldquo;It all started so unexpectedly, babuuu. What started with a
+          random snap, a few conversations, and so many unexpected moments slowly
+          turned into a connection that neither of us could have imagined.&rdquo;
         </QuoteCard>
 
         <QuoteCard>
-          "Seeing you everyday again, somehow feels simple and grounded in a
-          world that's become anything but simple."
+          &ldquo;From two people who were practically strangers to being in a
+          relationship, sharing feelings, making memories, and becoming a part of
+          each other&apos;s lives.&rdquo;
         </QuoteCard>
 
         <QuoteCard>
-          "It's been almost nine years. And still, the comfort between us feels
-          exactly the same. That is rare."
+          &ldquo;Sometimes, I even feel like you had secretly planned
+          everything, like a little mastermind, just to bring us closer. 😂🥹❤️&rdquo;
         </QuoteCard>
 
         <QuoteCard>
-          "You have a genuine nature that disarms people. It makes the world
-          feel a little less cynical."
+          &ldquo;Maybe it was all a coincidence, maybe it was destiny, or maybe
+          some stories are written long before we even realise they have
+          begun.&rdquo;
         </QuoteCard>
       </div>
     </section>
@@ -695,7 +701,8 @@ const LookingForwardSection: React.FC = () => {
                 Signing Off
               </p>
               <p className="font-serif text-2xl italic text-slate-200">
-                "Glad we found our way back."
+                &ldquo;I&apos;m grateful for every little moment that brought me
+                closer to you.&rdquo;
               </p>
             </div>
           </div>
@@ -703,27 +710,30 @@ const LookingForwardSection: React.FC = () => {
           {/* RIGHT: The Content (Text Heavy but Clean) */}
           <div className="space-y-6 md:col-span-7 md:pl-2">
             <p className="text-base leading-relaxed text-slate-400">
-              We can’t rewrite the years that passed, and honestly, I don’t
-              think we need to. There is something valuable about the fact that
-              we lived separate lives, grew into different people, and still
-              found common ground again. It proves that this connection isn't
-              just nostalgia—it’s compatible with who we are now.
+              And now, look at us, babuuu. 🥹❤️ From two people who were
+              practically strangers to being in a relationship, sharing feelings,
+              making memories, and becoming a part of each other&apos;s lives.
             </p>
 
             <p className="text-base leading-relaxed text-slate-400">
-              At this stage in our lives, friendship isn't about constant
-              messaging or dramatic declarations. It’s about consistency. It’s
-              about having people who know your history but are interested in
-              your future. I am grateful that life circled back around so you
-              could be part of that for me.
+              If someone had told me back then that one random snap would
+              eventually lead me to you, I would never have believed them. But
+              today, you&apos;re my babuuu, my special person, and someone
+              I&apos;m so grateful to have in my life. ❤️🫂
+            </p>
+
+            <p className="text-base leading-relaxed text-slate-400">
+              Our story didn&apos;t start with a perfect plan. It started with a
+              simple snap, a little conversation, a touch of magic, and somehow,
+              it led me to you. ❤️♾️
             </p>
 
             <div className="mt-8 flex items-center justify-between border-t border-slate-800 pt-8">
               <div>
                 <p className="text-lg font-bold text-white">
-                  Happy Birthday, Harshada.
+                  Happy Birthday, Dipali. 😘🥰
                 </p>
-                <p className="text-sm text-slate-500">— Sunny, 2025</p>
+                <p className="text-sm text-slate-500">— Sunny, 2026</p>
               </div>
 
               {/* Small Visual Detail */}
@@ -738,4 +748,4 @@ const LookingForwardSection: React.FC = () => {
   );
 };
 
-export default HarshadaBirthdayPage;
+export default DipaliiBirthdayPage;
