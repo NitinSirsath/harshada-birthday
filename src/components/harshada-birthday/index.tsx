@@ -410,33 +410,53 @@ const IntroSection: React.FC = () => {
         so beautiful.
       </p>
 
-      {/* Cinematic Hero - Two photo collage that works perfectly with portrait images */}
-      <div className="mt-8 grid grid-cols-2 gap-3 md:gap-4 rounded-3xl overflow-hidden" style={{ height: "420px" }}>
-        {/* Left: Large portrait photo */}
-        <div className="relative overflow-hidden rounded-2xl bg-slate-900 group">
-          <img
-            src="/photo7.jpeg"
-            alt="Dipali"
-            className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 opacity-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 p-4 md:p-6">
-            <p className="font-serif text-base italic text-white md:text-xl">
+      {/* Cinematic Hero Card - Luxury magazine split layout */}
+      <div className="group relative mt-8 overflow-hidden rounded-[2.5rem] border border-rose-500/20 bg-slate-900/90 shadow-2xl backdrop-blur-xl">
+        {/* Ambient glow behind card */}
+        <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-rose-500/15 blur-3xl" />
+        <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-purple-500/15 blur-3xl" />
+
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 p-6 md:p-10 items-center">
+          {/* Left Text / Quote Column */}
+          <div className="space-y-6 md:col-span-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-rose-300">
+              <span className="h-2 w-2 rounded-full bg-rose-500 animate-ping" />
+              Special Edition · 2026
+            </div>
+
+            <h3 className="font-serif text-2xl md:text-4xl italic text-white font-medium leading-tight">
               &ldquo;What started with a random snap led me to you.&rdquo;
+            </h3>
+
+            <p className="text-sm md:text-base leading-relaxed text-slate-300">
+              From two people who were practically strangers to sharing feelings, making memories, and becoming a part of each other&apos;s lives. You&apos;re my babuuu, my special person, and I&apos;m so grateful for every moment with you.
             </p>
-            <p className="mt-1 text-[10px] uppercase tracking-widest text-rose-200/80">
-              April 6, 2025 — October 17, 2026
-            </p>
+
+            <div className="flex items-center gap-4 pt-2 border-t border-slate-800">
+              <span className="text-2xl">❤️</span>
+              <div>
+                <p className="text-sm font-bold text-white tracking-wide">Sunny &amp; Dipali</p>
+                <p className="text-xs text-rose-300/80">April 6, 2025 — Forever</p>
+              </div>
+            </div>
           </div>
-        </div>
-        {/* Right: Second portrait photo */}
-        <div className="relative overflow-hidden rounded-2xl bg-slate-900 group">
-          <img
-            src="/photo2.jpg"
-            alt="Dipali"
-            className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 opacity-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+          {/* Right Portrait Photo Column - 100% visible, never cut off! */}
+          <div className="md:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-[320px] aspect-[3/4] overflow-hidden rounded-2xl border-2 border-rose-500/30 shadow-2xl bg-slate-950 group/photo">
+              <img
+                src="/photo_hero.jpg"
+                alt="Dipali Birthday Queen"
+                className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover/photo:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 right-3 text-center">
+                <span className="inline-block rounded-full bg-black/50 px-3 py-1 text-[11px] font-medium uppercase tracking-widest text-rose-200 backdrop-blur-md border border-white/10">
+                  Birthday Queen ✨
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -491,10 +511,23 @@ const OurStorySection: React.FC = () => {
       </div>
 
       {/* --- CINEMATIC VIDEO BLOCK --- */}
-      <div className="group relative overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl transition-all hover:shadow-rose-500/10">
-        <div className="relative aspect-video w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+      <div className="group relative overflow-hidden rounded-[2.5rem] bg-slate-950 border border-rose-500/20 shadow-2xl transition-all hover:shadow-rose-500/10 min-h-[460px] md:h-[580px] flex items-center justify-center p-4 md:p-8">
+        {/* Ambient video background blur */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover blur-2xl opacity-25 scale-110 pointer-events-none"
+          src="/vid_1.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent pointer-events-none z-10" />
+
+        {/* Foreground full video without any cropping */}
+        <div className="relative z-20 h-full max-h-[500px] flex items-center justify-center">
           <video
-            className="h-full w-full object-cover object-center"
+            className="h-full max-h-[480px] w-auto rounded-2xl object-contain shadow-2xl border border-white/10"
             src="/vid_1.mp4"
             autoPlay
             muted
@@ -502,17 +535,15 @@ const OurStorySection: React.FC = () => {
             playsInline
             poster="/cinametic.jpg"
           />
-          {/* Dark Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* Video Caption Overlay */}
-        <div className="absolute bottom-0 left-0 p-8 md:p-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur-md">
+        <div className="absolute bottom-4 left-6 md:bottom-8 md:left-10 z-30 pointer-events-none">
+          <div className="inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur-md border border-white/10 mb-2">
             <span className="h-1.5 w-1.5 rounded-full bg-rose-500 animate-pulse" />
             Live Memory
           </div>
-          <p className="mt-4 max-w-lg font-serif text-xl italic text-white/90 md:text-2xl">
+          <p className="max-w-lg font-serif text-base italic text-white/95 md:text-xl drop-shadow-md">
             &ldquo;Maybe it was destiny, or maybe some stories are written long
             before we realise they&apos;ve begun.&rdquo;
           </p>
