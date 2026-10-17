@@ -410,22 +410,33 @@ const IntroSection: React.FC = () => {
         so beautiful.
       </p>
 
-      {/* Cinematic Hero Image */}
-      <div className="group relative mt-8 flex w-full items-end overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-2xl" style={{ minHeight: "380px", maxHeight: "540px" }}>
-        <img
-          src="/photo1.jpg"
-          alt="Hero"
-          className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105 opacity-90"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-
-        <div className="relative z-10 p-6 md:p-10">
-          <p className="font-serif text-xl italic text-white md:text-3xl">
-            &ldquo;What started with a random snap led me to you.&rdquo;
-          </p>
-          <p className="mt-2 text-xs uppercase tracking-widest text-rose-200/80">
-            April 6, 2025 — October 17, 2026
-          </p>
+      {/* Cinematic Hero - Two photo collage that works perfectly with portrait images */}
+      <div className="mt-8 grid grid-cols-2 gap-3 md:gap-4 rounded-3xl overflow-hidden" style={{ height: "420px" }}>
+        {/* Left: Large portrait photo */}
+        <div className="relative overflow-hidden rounded-2xl bg-slate-900 group">
+          <img
+            src="/photo7.jpeg"
+            alt="Dipali"
+            className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 p-4 md:p-6">
+            <p className="font-serif text-base italic text-white md:text-xl">
+              &ldquo;What started with a random snap led me to you.&rdquo;
+            </p>
+            <p className="mt-1 text-[10px] uppercase tracking-widest text-rose-200/80">
+              April 6, 2025 — October 17, 2026
+            </p>
+          </div>
+        </div>
+        {/* Right: Second portrait photo */}
+        <div className="relative overflow-hidden rounded-2xl bg-slate-900 group">
+          <img
+            src="/photo2.jpg"
+            alt="Dipali"
+            className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </div>
       </div>
     </section>
